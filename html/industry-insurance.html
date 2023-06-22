@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en-US"><head><meta charset="utf-8"><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(){this.triggerEvents=["keydown","mousedown","mousemove","touchmove","touchstart","touchend","wheel"],this.userEventHandler=this._triggerListener.bind(this),this.touchStartHandler=this._onTouchStart.bind(this),this.touchMoveHandler=this._onTouchMove.bind(this),this.touchEndHandler=this._onTouchEnd.bind(this),this.clickHandler=this._onClick.bind(this),this.interceptedClicks=[],window.addEventListener("pageshow",(e=>{this.persisted=e.persisted})),window.addEventListener("DOMContentLoaded",(()=>{this._preconnect3rdParties()})),this.delayedScripts={normal:[],async:[],defer:[]},this.allJQueries=[]}_addUserInteractionListener(e){document.hidden?e._triggerListener():(this.triggerEvents.forEach((t=>window.addEventListener(t,e.userEventHandler,{passive:!0}))),window.addEventListener("touchstart",e.touchStartHandler,{passive:!0}),window.addEventListener("mousedown",e.touchStartHandler),document.addEventListener("visibilitychange",e.userEventHandler))}_removeUserInteractionListener(){this.triggerEvents.forEach((e=>window.removeEventListener(e,this.userEventHandler,{passive:!0}))),document.removeEventListener("visibilitychange",this.userEventHandler)}_onTouchStart(e){"HTML"!==e.target.tagName&&(window.addEventListener("touchend",this.touchEndHandler),window.addEventListener("mouseup",this.touchEndHandler),window.addEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.addEventListener("mousemove",this.touchMoveHandler),e.target.addEventListener("click",this.clickHandler),this._renameDOMAttribute(e.target,"onclick","rocket-onclick"))}_onTouchMove(e){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler),e.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(e.target,"rocket-onclick","onclick")}_onTouchEnd(e){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler)}_onClick(e){e.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(e.target,"rocket-onclick","onclick"),this.interceptedClicks.push(e),e.preventDefault(),e.stopPropagation(),e.stopImmediatePropagation()}_replayClicks(){window.removeEventListener("touchstart",this.touchStartHandler,{passive:!0}),window.removeEventListener("mousedown",this.touchStartHandler),this.interceptedClicks.forEach((e=>{e.target.dispatchEvent(new MouseEvent("click",{view:e.view,bubbles:!0,cancelable:!0}))}))}_renameDOMAttribute(e,t,n){e.hasAttribute&&e.hasAttribute(t)&&(event.target.setAttribute(n,event.target.getAttribute(t)),event.target.removeAttribute(t))}_triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}_preconnect3rdParties(){let e=[];document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((t=>{if(t.hasAttribute("src")){const n=new URL(t.src).origin;n!==location.origin&&e.push({src:n,crossOrigin:t.crossOrigin||"module"===t.getAttribute("data-rocket-type")})}})),e=[...new Map(e.map((e=>[JSON.stringify(e),e]))).values()],this._batchInjectResourceHints(e,"preconnect")}async _loadEverythingNow(){this.lastBreath=Date.now(),this._delayEventListeners(),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async);try{await this._triggerDOMContentLoaded(),await this._triggerWindowLoad()}catch(e){}window.dispatchEvent(new Event("rocket-allScriptsLoaded")),this._replayClicks()}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((e=>{e.hasAttribute("src")?e.hasAttribute("async")&&!1!==e.async?this.delayedScripts.async.push(e):e.hasAttribute("defer")&&!1!==e.defer||"module"===e.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(e):this.delayedScripts.normal.push(e):this.delayedScripts.normal.push(e)}))}async _transformScript(e){return await this._littleBreath(),new Promise((t=>{const n=document.createElement("script");[...e.attributes].forEach((e=>{let t=e.nodeName;"type"!==t&&("data-rocket-type"===t&&(t="type"),n.setAttribute(t,e.nodeValue))})),e.hasAttribute("src")?(n.addEventListener("load",t),n.addEventListener("error",t)):(n.text=e.text,t());try{e.parentNode.replaceChild(n,e)}catch(e){t()}}))}async _loadScriptsFromList(e){const t=e.shift();return t?(await this._transformScript(t),this._loadScriptsFromList(e)):Promise.resolve()}_preloadAllScripts(){this._batchInjectResourceHints([...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async],"preload")}_batchInjectResourceHints(e,t){var n=document.createDocumentFragment();e.forEach((e=>{if(e.src){const i=document.createElement("link");i.href=e.src,i.rel=t,"preconnect"!==t&&(i.as="script"),e.getAttribute&&"module"===e.getAttribute("data-rocket-type")&&(i.crossOrigin=!0),e.crossOrigin&&(i.crossOrigin=e.crossOrigin),n.appendChild(i)}})),document.head.appendChild(n)}_delayEventListeners(){let e={};function t(t,n){!function(t){function n(n){return e[t].eventsToRewrite.indexOf(n)>=0?"rocket-"+n:n}e[t]||(e[t]={originalFunctions:{add:t.addEventListener,remove:t.removeEventListener},eventsToRewrite:[]},t.addEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.add.apply(t,arguments)},t.removeEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.remove.apply(t,arguments)})}(t),e[t].eventsToRewrite.push(n)}function n(e,t){let n=e[t];Object.defineProperty(e,t,{get:()=>n||function(){},set(i){e["rocket"+t]=n=i}})}t(document,"DOMContentLoaded"),t(window,"DOMContentLoaded"),t(window,"load"),t(window,"pageshow"),t(document,"readystatechange"),n(document,"onreadystatechange"),n(window,"onload"),n(window,"onpageshow")}_delayJQueryReady(e){let t=window.jQuery;Object.defineProperty(window,"jQuery",{get:()=>t,set(n){if(n&&n.fn&&!e.allJQueries.includes(n)){n.fn.ready=n.fn.init.prototype.ready=function(t){e.domReadyFired?t.bind(document)(n):document.addEventListener("rocket-DOMContentLoaded",(()=>t.bind(document)(n)))};const t=n.fn.on;n.fn.on=n.fn.init.prototype.on=function(){if(this[0]===window){function e(e){return e.split(" ").map((e=>"load"===e||0===e.indexOf("load.")?"rocket-jquery-load":e)).join(" ")}"string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=e(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach((t=>{delete Object.assign(arguments[0],{[e(t)]:arguments[0][t]})[t]}))}return t.apply(this,arguments),this},e.allJQueries.push(n)}t=n}})}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._littleBreath(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),window.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._littleBreath(),document.rocketonreadystatechange&&document.rocketonreadystatechange()}async _triggerWindowLoad(){await this._littleBreath(),window.dispatchEvent(new Event("rocket-load")),await this._littleBreath(),window.rocketonload&&window.rocketonload(),await this._littleBreath(),this.allJQueries.forEach((e=>e(window).trigger("rocket-jquery-load"))),await this._littleBreath();const e=new Event("rocket-pageshow");e.persisted=this.persisted,window.dispatchEvent(e),await this._littleBreath(),window.rocketonpageshow&&window.rocketonpageshow({persisted:this.persisted})}_handleDocumentWrite(){const e=new Map;document.write=document.writeln=function(t){const n=document.currentScript,i=document.createRange(),r=n.parentElement;let o=e.get(n);void 0===o&&(o=n.nextSibling,e.set(n,o));const s=document.createDocumentFragment();i.setStart(s,0),s.appendChild(i.createContextualFragment(t)),r.insertBefore(s,o)}}async _littleBreath(){Date.now()-this.lastBreath>45&&(await this._requestAnimFrame(),this.lastBreath=Date.now())}async _requestAnimFrame(){return document.hidden?new Promise((e=>setTimeout(e))):new Promise((e=>requestAnimationFrame(e)))}static run(){const e=new RocketLazyLoadScripts;e._addUserInteractionListener(e)}}RocketLazyLoadScripts.run();</script>
+<!DOCTYPE html><html lang="en-US"><head> <meta name="viewport" content="width=device-width, initial-scale=1"> <meta charset="utf-8"><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(){this.triggerEvents=["keydown","mousedown","mousemove","touchmove","touchstart","touchend","wheel"],this.userEventHandler=this._triggerListener.bind(this),this.touchStartHandler=this._onTouchStart.bind(this),this.touchMoveHandler=this._onTouchMove.bind(this),this.touchEndHandler=this._onTouchEnd.bind(this),this.clickHandler=this._onClick.bind(this),this.interceptedClicks=[],window.addEventListener("pageshow",(e=>{this.persisted=e.persisted})),window.addEventListener("DOMContentLoaded",(()=>{this._preconnect3rdParties()})),this.delayedScripts={normal:[],async:[],defer:[]},this.allJQueries=[]}_addUserInteractionListener(e){document.hidden?e._triggerListener():(this.triggerEvents.forEach((t=>window.addEventListener(t,e.userEventHandler,{passive:!0}))),window.addEventListener("touchstart",e.touchStartHandler,{passive:!0}),window.addEventListener("mousedown",e.touchStartHandler),document.addEventListener("visibilitychange",e.userEventHandler))}_removeUserInteractionListener(){this.triggerEvents.forEach((e=>window.removeEventListener(e,this.userEventHandler,{passive:!0}))),document.removeEventListener("visibilitychange",this.userEventHandler)}_onTouchStart(e){"HTML"!==e.target.tagName&&(window.addEventListener("touchend",this.touchEndHandler),window.addEventListener("mouseup",this.touchEndHandler),window.addEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.addEventListener("mousemove",this.touchMoveHandler),e.target.addEventListener("click",this.clickHandler),this._renameDOMAttribute(e.target,"onclick","rocket-onclick"))}_onTouchMove(e){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler),e.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(e.target,"rocket-onclick","onclick")}_onTouchEnd(e){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler)}_onClick(e){e.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(e.target,"rocket-onclick","onclick"),this.interceptedClicks.push(e),e.preventDefault(),e.stopPropagation(),e.stopImmediatePropagation()}_replayClicks(){window.removeEventListener("touchstart",this.touchStartHandler,{passive:!0}),window.removeEventListener("mousedown",this.touchStartHandler),this.interceptedClicks.forEach((e=>{e.target.dispatchEvent(new MouseEvent("click",{view:e.view,bubbles:!0,cancelable:!0}))}))}_renameDOMAttribute(e,t,n){e.hasAttribute&&e.hasAttribute(t)&&(event.target.setAttribute(n,event.target.getAttribute(t)),event.target.removeAttribute(t))}_triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}_preconnect3rdParties(){let e=[];document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((t=>{if(t.hasAttribute("src")){const n=new URL(t.src).origin;n!==location.origin&&e.push({src:n,crossOrigin:t.crossOrigin||"module"===t.getAttribute("data-rocket-type")})}})),e=[...new Map(e.map((e=>[JSON.stringify(e),e]))).values()],this._batchInjectResourceHints(e,"preconnect")}async _loadEverythingNow(){this.lastBreath=Date.now(),this._delayEventListeners(),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async);try{await this._triggerDOMContentLoaded(),await this._triggerWindowLoad()}catch(e){}window.dispatchEvent(new Event("rocket-allScriptsLoaded")),this._replayClicks()}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((e=>{e.hasAttribute("src")?e.hasAttribute("async")&&!1!==e.async?this.delayedScripts.async.push(e):e.hasAttribute("defer")&&!1!==e.defer||"module"===e.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(e):this.delayedScripts.normal.push(e):this.delayedScripts.normal.push(e)}))}async _transformScript(e){return await this._littleBreath(),new Promise((t=>{const n=document.createElement("script");[...e.attributes].forEach((e=>{let t=e.nodeName;"type"!==t&&("data-rocket-type"===t&&(t="type"),n.setAttribute(t,e.nodeValue))})),e.hasAttribute("src")?(n.addEventListener("load",t),n.addEventListener("error",t)):(n.text=e.text,t());try{e.parentNode.replaceChild(n,e)}catch(e){t()}}))}async _loadScriptsFromList(e){const t=e.shift();return t?(await this._transformScript(t),this._loadScriptsFromList(e)):Promise.resolve()}_preloadAllScripts(){this._batchInjectResourceHints([...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async],"preload")}_batchInjectResourceHints(e,t){var n=document.createDocumentFragment();e.forEach((e=>{if(e.src){const i=document.createElement("link");i.href=e.src,i.rel=t,"preconnect"!==t&&(i.as="script"),e.getAttribute&&"module"===e.getAttribute("data-rocket-type")&&(i.crossOrigin=!0),e.crossOrigin&&(i.crossOrigin=e.crossOrigin),n.appendChild(i)}})),document.head.appendChild(n)}_delayEventListeners(){let e={};function t(t,n){!function(t){function n(n){return e[t].eventsToRewrite.indexOf(n)>=0?"rocket-"+n:n}e[t]||(e[t]={originalFunctions:{add:t.addEventListener,remove:t.removeEventListener},eventsToRewrite:[]},t.addEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.add.apply(t,arguments)},t.removeEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.remove.apply(t,arguments)})}(t),e[t].eventsToRewrite.push(n)}function n(e,t){let n=e[t];Object.defineProperty(e,t,{get:()=>n||function(){},set(i){e["rocket"+t]=n=i}})}t(document,"DOMContentLoaded"),t(window,"DOMContentLoaded"),t(window,"load"),t(window,"pageshow"),t(document,"readystatechange"),n(document,"onreadystatechange"),n(window,"onload"),n(window,"onpageshow")}_delayJQueryReady(e){let t=window.jQuery;Object.defineProperty(window,"jQuery",{get:()=>t,set(n){if(n&&n.fn&&!e.allJQueries.includes(n)){n.fn.ready=n.fn.init.prototype.ready=function(t){e.domReadyFired?t.bind(document)(n):document.addEventListener("rocket-DOMContentLoaded",(()=>t.bind(document)(n)))};const t=n.fn.on;n.fn.on=n.fn.init.prototype.on=function(){if(this[0]===window){function e(e){return e.split(" ").map((e=>"load"===e||0===e.indexOf("load.")?"rocket-jquery-load":e)).join(" ")}"string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=e(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach((t=>{delete Object.assign(arguments[0],{[e(t)]:arguments[0][t]})[t]}))}return t.apply(this,arguments),this},e.allJQueries.push(n)}t=n}})}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._littleBreath(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),window.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._littleBreath(),document.rocketonreadystatechange&&document.rocketonreadystatechange()}async _triggerWindowLoad(){await this._littleBreath(),window.dispatchEvent(new Event("rocket-load")),await this._littleBreath(),window.rocketonload&&window.rocketonload(),await this._littleBreath(),this.allJQueries.forEach((e=>e(window).trigger("rocket-jquery-load"))),await this._littleBreath();const e=new Event("rocket-pageshow");e.persisted=this.persisted,window.dispatchEvent(e),await this._littleBreath(),window.rocketonpageshow&&window.rocketonpageshow({persisted:this.persisted})}_handleDocumentWrite(){const e=new Map;document.write=document.writeln=function(t){const n=document.currentScript,i=document.createRange(),r=n.parentElement;let o=e.get(n);void 0===o&&(o=n.nextSibling,e.set(n,o));const s=document.createDocumentFragment();i.setStart(s,0),s.appendChild(i.createContextualFragment(t)),r.insertBefore(s,o)}}async _littleBreath(){Date.now()-this.lastBreath>45&&(await this._requestAnimFrame(),this.lastBreath=Date.now())}async _requestAnimFrame(){return document.hidden?new Promise((e=>setTimeout(e))):new Promise((e=>requestAnimationFrame(e)))}static run(){const e=new RocketLazyLoadScripts;e._addUserInteractionListener(e)}}RocketLazyLoadScripts.run();</script>
   <!-- Google Tag Manager -->
   <script type="rocketlazyloadscript">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -6,7 +6,7 @@
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-WSTB5F9');</script>
   <!-- End Google Tag Manager -->
-<link rel="manifest" href="https://www.binah.ai/wp-content/uploads/fbrfg/site.webmanifest">
+<link rel="manifest" href="#">
 <link rel="mask-icon" href="fonts/safari-pinned-tab.svg" color="#021239">
 <meta name="msapplication-TileColor" content="#021239">
 <meta name="msapplication-config" content="https://www.binah.ai/wp-content/uploads/fbrfg/browserconfig.xml">
@@ -15,9 +15,9 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<link rel="alternate" hreflang="en" href="https://www.binah.ai/industry-insurance/">
-<link rel="alternate" hreflang="ja" href="https://www.binah.ai/ja/industry-insurance/">
-<link rel="alternate" hreflang="x-default" href="https://www.binah.ai/industry-insurance/">
+<link rel="alternate" hreflang="en" href="#">
+<link rel="alternate" hreflang="ja" href="#">
+<link rel="alternate" hreflang="x-default" href="#">
 
 		<!-- Meta Tag Manager -->
 		
@@ -31,7 +31,7 @@
 	<meta property="og:type" content="article">
 	<meta property="og:title" content="Insurance - Binah">
 	<meta property="og:description" content="Out-of-the-box AI healthcare use cases provide heart rate variability analysis and insights into health conditions using standard device cameras.">
-	<meta property="og:url" content="https://www.binah.ai/industry-insurance/">
+	<meta property="og:url" content="#">
 	<meta property="og:site_name" content="Binah">
 	<meta property="article:modified_time" content="2022-10-26T13:11:52+00:00">
 	<meta property="og:image" content="images/apple-touch-icon-1.png">
@@ -41,7 +41,7 @@
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:label1" content="Est. reading time">
 	<meta name="twitter:data1" content="1 minute">
-	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://www.binah.ai/industry-insurance/","url":"https://www.binah.ai/industry-insurance/","name":"Insurance - Binah","isPartOf":{"@id":"https://www.binah.ai/#website"},"datePublished":"2020-09-24T14:43:18+00:00","dateModified":"2022-10-26T13:11:52+00:00","description":"Out-of-the-box AI healthcare use cases provide heart rate variability analysis and insights into health conditions using standard device cameras.","breadcrumb":{"@id":"https://www.binah.ai/industry-insurance/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://www.binah.ai/industry-insurance/"]}]},{"@type":"BreadcrumbList","@id":"https://www.binah.ai/industry-insurance/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.binah.ai/"},{"@type":"ListItem","position":2,"name":"Insurance"}]},{"@type":"WebSite","@id":"https://www.binah.ai/#website","url":"https://www.binah.ai/","name":"Binah","description":"AI-powered Video-based Health and Wellness Monitoring","publisher":{"@id":"https://www.binah.ai/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://www.binah.ai/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"Organization","@id":"https://www.binah.ai/#organization","name":"Binah","url":"https://www.binah.ai/","logo":{"@type":"ImageObject","inLanguage":"en-US","@id":"https://www.binah.ai/#/schema/logo/image/","url":"https://www.binah.ai/wp-content/uploads/2020/10/Binah_Favicon-white.png","contentUrl":"https://www.binah.ai/wp-content/uploads/2020/10/Binah_Favicon-white.png","width":512,"height":512,"caption":"Binah"},"image":{"@id":"https://www.binah.ai/#/schema/logo/image/"}}]}</script>
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://www.binah.ai/industry-insurance/","url":"https://www.binah.ai/industry-insurance/","name":"Insurance - Binah","isPartOf":{"@id":"https://www.binah.ai/#website"},"datePublished":"2020-09-24T14:43:18+00:00","dateModified":"2022-10-26T13:11:52+00:00","description":"Out-of-the-box AI healthcare use cases provide heart rate variability analysis and insights into health conditions using standard device cameras.","breadcrumb":{"@id":"https://www.binah.ai/industry-insurance/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://www.binah.ai/industry-insurance/"]}]},{"@type":"BreadcrumbList","@id":"https://www.binah.ai/industry-insurance/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.binah.ai/"},{"@type":"ListItem","position":2,"name":"Insurance"}]},{"@type":"WebSite","@id":"https://www.binah.ai/#website","url":"https://www.binah.ai/","name":"Binah","description":"AI-powered Video-based Health and Wellness Monitoring","publisher":{"@id":"https://www.binah.ai/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://www.binah.ai/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"Organization","@id":"https://www.binah.ai/#organization","name":"Binah","url":"https://www.binah.ai/","logo":{"@type":"ImageObject","inLanguage":"en-US","@id":"https://www.binah.ai/#/schema/logo/image/","url":"https://www.binah.ai/wp-content/uploads/2020/10/Binah_Favicon-white.png","contentUrl":"","width":512,"height":512,"caption":"Binah"},"image":{"@id":"https://www.binah.ai/#/schema/logo/image/"}}]}</script>
 	<!-- / Yoast SEO plugin. -->
 
 
@@ -234,7 +234,7 @@ a.mega-menu-link[href*="powered-by-binah-ai"]{
 <li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-4925" id="mega-menu-item-4925"><a class="mega-menu-link" href="https://www.binah.ai/sdk/">Binah SDK</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-13114" id="mega-menu-item-13114"><a class="mega-menu-link" href="https://www.binah.ai/app/">Binah Check</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-15792" id="mega-menu-item-15792"><a class="mega-menu-link" href="https://www.binah.ai/vital-signs/">Vital Signs</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-15586" id="mega-menu-item-15586"><a class="mega-menu-link" href="https://www.binah.ai/wellness-score/">Wellness Score</a></li>		</ul>
 </li>	</ul>
 </li></ul>
-</li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-grid mega-menu-item-5909" id="mega-menu-item-5909"><a class="mega-menu-link" href="C:\Users\AL-FAJR\Downloads\Compressed\Technology\index.html" tabindex="0">Technology</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-16326" id="mega-menu-item-16326"><a class="mega-menu-link" href="https://www.binah.ai/research/" tabindex="0">Research</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-ancestor mega-current-menu-parent mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-menu-item-5910" id="mega-menu-item-5910"><a class="mega-menu-link" href="C:\Users\AL-FAJR\Downloads\Compressed\Solution\index.html" aria-haspopup="true" aria-expanded="false" tabindex="0">Solutions<span class="mega-indicator" tabindex="0" role="button" aria-label="Solutions submenu"></span></a>
+</li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-grid mega-menu-item-5909" id="mega-menu-item-5909"><a class="mega-menu-link" href="../Technology/index.html" tabindex="0">Technology</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-16326" id="mega-menu-item-16326"><a class="mega-menu-link" href="https://www.binah.ai/research/" tabindex="0">Research</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-ancestor mega-current-menu-parent mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-menu-item-5910" id="mega-menu-item-5910"><a class="mega-menu-link" href="../Solution/index.html" aria-haspopup="true" aria-expanded="false" tabindex="0">Solutions<span class="mega-indicator" tabindex="0" role="button" aria-label="Solutions submenu"></span></a>
 <ul class="mega-sub-menu">
 <li class="mega-menu-row" id="mega-menu-5910-0">
 	<ul class="mega-sub-menu">
@@ -253,7 +253,7 @@ a.mega-menu-link[href*="powered-by-binah-ai"]{
 </li>	</ul>
 </li></ul>
 </li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-align-bottom-left mega-menu-flyout mega-menu-item-5925" id="mega-menu-item-5925"><a class="mega-menu-link" href="https://support.binah.ai/hc/en-us" tabindex="0">Support</a></li><li class="mega-menu-item mega-wpml-ls-slot-2 mega-wpml-ls-item mega-wpml-ls-item-en mega-wpml-ls-current-language mega-wpml-ls-menu-item mega-wpml-ls-first-item mega-menu-item-type-wpml_ls_menu_item mega-menu-item-object-wpml_ls_menu_item mega-menu-item-has-children mega-menu-flyout mega-menu-item-wpml-ls-2-en" id="mega-menu-item-wpml-ls-2-en"><a title="English" class="mega-menu-link" href="https://www.binah.ai/industry-insurance/" aria-haspopup="true" aria-expanded="false" tabindex="0">
-<span class="wpml-ls-native" lang="en">English</span><span class="mega-indicator" tabindex="0" role="button" aria-label="
+<span class="wpml-ls-native" lang="en">English</span><span class="mega-indicator" tabindex="0" role="button"></span>
 <span class=" wpml-ls-native" lang="en">English</span> submenu"></a>
 <ul class="mega-sub-menu">
 <li class="mega-menu-item mega-wpml-ls-slot-2 mega-wpml-ls-item mega-wpml-ls-item-ja mega-wpml-ls-menu-item mega-menu-item-type-wpml_ls_menu_item mega-menu-item-object-wpml_ls_menu_item mega-menu-flyout mega-menu-item-wpml-ls-2-ja" id="mega-menu-item-wpml-ls-2-ja"><a title="日本語" class="mega-menu-link" href="https://www.binah.ai/ja/industry-insurance/">
@@ -273,7 +273,7 @@ a.mega-menu-link[href*="powered-by-binah-ai"]{
     <div class="grid-row">
       <div class="col-xs-5 col-md-2 col-left">
         <div class="menu">
-          <a href="https://www.binah.ai/">
+          <a href="#">
             <img class="logo logo-light" src="images/Vitalism Logo.png" alt="header_logo_light">
             <img class="logo dark logo-dark" src="images/Vitalism Logo.png" alt="header_logo_dark">
           </a>
@@ -282,18 +282,19 @@ a.mega-menu-link[href*="powered-by-binah-ai"]{
 
       <div class="col-xs-7 col-md-10 col-right">
         <nav class="nav nav-primary">
-                    <div id="mega-menu-wrap-primary_navigation" class="mega-menu-wrap"><div class="mega-menu-toggle"><div class="mega-toggle-blocks-left"></div><div class="mega-toggle-blocks-center"></div><div class="mega-toggle-blocks-right"><div class="mega-toggle-block mega-menu-toggle-block mega-toggle-block-1" id="mega-toggle-block-1" tabindex="0"><span class="mega-toggle-label" role="button" aria-expanded="false"><span class="mega-toggle-label-closed"></span><span class="mega-toggle-label-open"></span></span></div></div></div><ul id="mega-menu-primary_navigation" class="mega-menu max-mega-menu mega-menu-horizontal mega-no-js" data-event="hover" data-effect="fade_up" data-effect-speed="200" data-effect-mobile="disabled" data-effect-speed-mobile="0" data-mobile-force-width="false" data-second-click="go" data-document-click="collapse" data-vertical-behaviour="standard" data-breakpoint="991" data-unbind="true" data-mobile-state="collapse_all" data-hover-intent-timeout="300" data-hover-intent-interval="100"><li class="mega-pink mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-menu-item-5908 pink" id="mega-menu-item-5908"><a class="mega-menu-link" href="C:\Users\AL-FAJR\Downloads\Compressed\company.html" aria-haspopup="true" aria-expanded="false" tabindex="0">Home Page<span class="mega-indicator" tabindex="0" role="button" aria-label="Health Data Platform submenu"></span></a>
-<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-grid mega-menu-item-5909" id="mega-menu-item-5909"><a class="mega-menu-link" href="C:\Users\AL-FAJR\Downloads\Compressed\Problem and statics\index.html" tabindex="0">Problem and statics</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-16326" id="mega-menu-item-16326"><a class="mega-menu-link" href="C:\Users\AL-FAJR\Downloads\Compressed\Technology\index.html" tabindex="0">Technology</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-menu-item-5910" id="mega-menu-item-5910"><a class="mega-menu-link" href="C:\Users\AL-FAJR\Downloads\Compressed\Solution\index.html" aria-haspopup="true" aria-expanded="false" tabindex="0">Solutions<span class="mega-indicator" tabindex="0" role="button" aria-label="Solutions submenu"></span></a>
+                    <div id="mega-menu-wrap-primary_navigation" class="mega-menu-wrap"><div class="mega-menu-toggle"><div class="mega-toggle-blocks-left"></div><div class="mega-toggle-blocks-center"></div><div class="mega-toggle-blocks-right"><div class="mega-toggle-block mega-menu-toggle-block mega-toggle-block-1" id="mega-toggle-block-1" tabindex="0"><span class="mega-toggle-label" role="button" aria-expanded="false"><span class="mega-toggle-label-closed"></span><span class="mega-toggle-label-open"></span></span></div></div></div><ul id="mega-menu-primary_navigation" class="mega-menu max-mega-menu mega-menu-horizontal mega-no-js" data-event="hover" data-effect="fade_up" data-effect-speed="200" data-effect-mobile="disabled" data-effect-speed-mobile="0" data-mobile-force-width="false" data-second-click="go" data-document-click="collapse" data-vertical-behaviour="standard" data-breakpoint="991" data-unbind="true" data-mobile-state="collapse_all" data-hover-intent-timeout="300" data-hover-intent-interval="100"><li class="mega-pink mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-menu-item-5908 pink" id="mega-menu-item-5908"><a class="mega-menu-link" href="../index.html" aria-haspopup="true" aria-expanded="false" tabindex="0">Home Page<span class="mega-indicator" tabindex="0" role="button" aria-label="Health Data Platform submenu"></span></a>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-grid mega-menu-item-5909" id="mega-menu-item-5909"><a class="mega-menu-link" href="../Problem and statics/index.html" tabindex="0">Problem and statics</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-16326" id="mega-menu-item-16326"><a class="mega-menu-link" href="../Technology/index.html" tabindex="0">Technology</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-menu-item-5910" id="mega-menu-item-5910"><a class="mega-menu-link" href="../Solution/index.html" aria-haspopup="true" aria-expanded="false" tabindex="0">Solutions<span class="mega-indicator" tabindex="0" role="button" aria-label="Solutions submenu"></span></a>
 
 
 </li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-ancestor mega-current-menu-parent mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-menu-item-5914" id="mega-menu-item-5914"><a class="mega-menu-link" href="industry-insurance.html" aria-haspopup="true" aria-expanded="false" tabindex="0">Features and Benefits<span class="mega-indicator" tabindex="0" role="button" aria-label="Company submenu"></span></a>
-  <li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-ancestor mega-current-menu-parent mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-menu-item-5914" id="mega-menu-item-5914"><a class="mega-menu-link" href="C:\Users\AL-FAJR\Downloads\Compressed\Futurework\futurework.html" aria-haspopup="true" aria-expanded="false" tabindex="0">Future Work and conclusion<span class="mega-indicator" tabindex="0" role="button" aria-label="Company submenu"></span></a></div>
+  <li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-ancestor mega-current-menu-parent mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-menu-item-5914" id="mega-menu-item-5914"><a class="mega-menu-link" href="../Futurework/futurework.html" aria-haspopup="true" aria-expanded="false" tabindex="0">Future Work and conclusion<span class="mega-indicator" tabindex="0" role="button" aria-label="Company submenu"></span></a>
+    <li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-ancestor mega-current-menu-parent mega-menu-item-has-children mega-menu-megamenu mega-align-bottom-left mega-menu-grid mega-menu-item-5914" id="mega-menu-item-5914"><a class="mega-menu-link" href="../Experimntal results/index.html" aria-haspopup="true" aria-expanded="false" tabindex="0">Experiments and Results<span class="mega-indicator" tabindex="0" role="button" aria-label="Company submenu"></span></a></div>
                   </nav>
         <nav class="nav nav-primary nav-primary-mobile">
                     <div id="mega-menu-wrap-primary_navigation_mobile" class="mega-menu-wrap"><div class="mega-menu-toggle"><div class="mega-toggle-blocks-left"></div><div class="mega-toggle-blocks-center"></div><div class="mega-toggle-blocks-right"><div class="mega-toggle-block mega-menu-toggle-block mega-toggle-block-1" id="mega-toggle-block-1" tabindex="0"><span class="mega-toggle-label" role="button" aria-expanded="false"><span class="mega-toggle-label-closed"></span><span class="mega-toggle-label-open"></span></span></div></div></div><ul id="mega-menu-primary_navigation_mobile" class="mega-menu max-mega-menu mega-menu-horizontal mega-no-js" data-event="hover_intent" data-effect="fade_up" data-effect-speed="200" data-effect-mobile="disabled" data-effect-speed-mobile="0" data-mobile-force-width="false" data-second-click="go" data-document-click="collapse" data-vertical-behaviour="standard" data-breakpoint="991" data-unbind="true" data-mobile-state="collapse_all" data-hover-intent-timeout="300" data-hover-intent-interval="100"><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout mega-menu-item-5887" id="mega-menu-item-5887"><a class="mega-menu-link" href="#" aria-haspopup="true" aria-expanded="false" tabindex="0">Health Data Platform<span class="mega-indicator" tabindex="0" role="button" aria-label="Health Data Platform submenu"></span></a>
 <ul class="mega-sub-menu">
 <li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-5888" id="mega-menu-item-5888"><a class="mega-menu-link" href="https://www.binah.ai/sdk/">Binah SDK</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-13120" id="mega-menu-item-13120"><a class="mega-menu-link" href="https://www.binah.ai/app/">Binah Check</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-15795" id="mega-menu-item-15795"><a class="mega-menu-link" href="https://www.binah.ai/vital-signs/">Vital Signs</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-15588" id="mega-menu-item-15588"><a class="mega-menu-link" href="https://www.binah.ai/wellness-score/">Wellness Score</a></li></ul>
-</li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-5891" id="mega-menu-item-5891"><a class="mega-menu-link" href="C:\Users\AL-FAJR\Downloads\Compressed\Technology\index.html" tabindex="0">Technology</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-16328" id="mega-menu-item-16328"><a class="mega-menu-link" href="https://www.binah.ai/research/" tabindex="0">Research</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-ancestor mega-current-menu-parent mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout mega-menu-item-5892" id="mega-menu-item-5892"><a class="mega-menu-link" href="C:\Users\AL-FAJR\Downloads\Compressed\Solution\index.html" aria-haspopup="true" aria-expanded="false" tabindex="0">Solutions<span class="mega-indicator" tabindex="0" role="button" aria-label="Solutions submenu"></span></a>
+</li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-5891" id="mega-menu-item-5891"><a class="mega-menu-link" href="../Technology/index.html" tabindex="0">Technology</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-16328" id="mega-menu-item-16328"><a class="mega-menu-link" href="https://www.binah.ai/research/" tabindex="0">Research</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-ancestor mega-current-menu-parent mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout mega-menu-item-5892" id="mega-menu-item-5892"><a class="mega-menu-link" href="../Solution/index.html" aria-haspopup="true" aria-expanded="false" tabindex="0">Solutions<span class="mega-indicator" tabindex="0" role="button" aria-label="Solutions submenu"></span></a>
 <ul class="mega-sub-menu">
 <li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-current-menu-item mega-page_item mega-page-item-6402 mega-current_page_item mega-menu-item-8046" id="mega-menu-item-8046"><a class="mega-menu-link" href="https://www.binah.ai/industry-insurance/" aria-current="page">Insurance</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-8047" id="mega-menu-item-8047"><a class="mega-menu-link" href="https://www.binah.ai/industry-personal-and-corporate-wellness/">Wellness</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-5893" id="mega-menu-item-5893"><a class="mega-menu-link" href="https://www.binah.ai/healthcare-and-pharma/">Healthcare and Pharma</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-12202" id="mega-menu-item-12202"><a class="mega-menu-link" href="https://www.binah.ai/our-customers/">Our Customers</a></li></ul>
 </li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout mega-menu-item-5896" id="mega-menu-item-5896"><a class="mega-menu-link" href="#" aria-haspopup="true" aria-expanded="false" tabindex="0">Company<span class="mega-indicator" tabindex="0" role="button" aria-label="Company submenu"></span></a>
@@ -303,8 +304,8 @@ a.mega-menu-link[href*="powered-by-binah-ai"]{
 <span class="wpml-ls-native" lang="en">English</span><span class="mega-indicator" tabindex="0" role="button" aria-label=" wpml-ls-native" lang="en">English</span> submenu"></a>
 <ul class="mega-sub-menu">
 <li class="mega-menu-item mega-wpml-ls-slot-38 mega-wpml-ls-item mega-wpml-ls-item-ja mega-wpml-ls-menu-item mega-menu-item-type-wpml_ls_menu_item mega-menu-item-object-wpml_ls_menu_item mega-menu-flyout mega-menu-item-wpml-ls-38-ja" id="mega-menu-item-wpml-ls-38-ja"><a title="日本語" class="mega-menu-link" href="https://www.binah.ai/ja/industry-insurance/">
-<span class="wpml-ls-native" lang="ja">日本語</span></a></li><li class="mega-menu-item mega-wpml-ls-slot-38 mega-wpml-ls-item mega-wpml-ls-item-es mega-wpml-ls-menu-item mega-wpml-ls-last-item mega-menu-item-type-wpml_ls_menu_item mega-menu-item-object-wpml_ls_menu_item mega-menu-flyout mega-menu-item-wpml-ls-38-es" id="mega-menu-item-wpml-ls-38-es"><a title="Español" class="mega-menu-link" href="https://www.binah.ai/es/">
-<span class="wpml-ls-native" lang="es">Español</span></a></li></ul>
+</a></li><li class="mega-menu-item mega-wpml-ls-slot-38 mega-wpml-ls-item mega-wpml-ls-item-es mega-wpml-ls-menu-item mega-wpml-ls-last-item mega-menu-item-type-wpml_ls_menu_item mega-menu-item-object-wpml_ls_menu_item mega-menu-flyout mega-menu-item-wpml-ls-38-es" id="mega-menu-item-wpml-ls-38-es"><a title="Español" class="mega-menu-link" href="https://www.binah.ai/es/">
+</a></li></ul>
 </li></ul></div>
                   </nav>
         <div class="login binah">
@@ -331,6 +332,7 @@ a.mega-menu-link[href*="powered-by-binah-ai"]{
     
     
   " style="text-align:left;">
+  
 
   <style>
     .component-page-hero {
@@ -413,206 +415,140 @@ a.mega-menu-link[href*="powered-by-binah-ai"]{
 <section class="tabs-with-content block tabs-with-content  " data-block_c06ca8286ee29fe7a480cec5f1da0187>
   <div class="tabs-with-content-container">
           
-        <h2 class="title">Vitalism Features</h2>
+   
     <div class="tabs-with-content-text">
+      <h2 class="title" style="margin-bottom:-4cm ;">Vitalism Features</h2>
+      
 </div>
+
     <div class="tabs-with-content-main">
-              
-                          <div class="tabs-with-content-active">
-          <h3 class="tabs-with-content-active-title">Remote Patient Monitoring</h3>
-          <p class="tabs-with-content-active-subtitle">The Vitalism System can be used for remote monitoring of patients' vital signs, allowing doctors and 
-caregivers to keep track of their patients' health status without the need for in-person visits. This can be particularly 
-useful for patients with chronic conditions, elderly patients, or patients who live in remote areas.</p>
-        </div>
-        
-                <div class="tabs-with-content-tabs">
-                  <div class="tabs-with-content-tab  hidden " data-bg-image="https://www.binah.ai/wp-content/uploads/2020/10/shutterstock_1530651434.jpg">
-            <p class="tabs-with-content-tab-title">Elderly Care</p>
-            <p class="tabs-with-content-tab-subtitle">the Vitalism application can be used to provide care for elderly individuals. 
-The application can continuously monitor their vital signs, allowing caregivers to respond 
-quickly in case of any emergencies or changes in health status.</p>
-            <div class="tabs-with-content-content-hidden">
-              
+     
+     
+      <style>
+		.slide {
+			position: relative;
+			height: 100%;
+			min-height: 100vh;
+			width: 100%;
+			overflow: hidden;
+			background-color: #f6f6f6;
+			color: #f6f6f6;
+			font-family: 'Open Sans', sans-serif;
+			box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+		}
+		.slide > div {
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 100%;
+			width: 100%;
+			opacity: 0;
+			transition: opacity 1s ease-in-out;
+			text-align: center;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+		.slide > div.active {
+			opacity: 1;
+		}
+		.slide > div h1 {
+			font-size: 3vw;
+			margin-top: 0;
+			margin-bottom: 0.2em;
+			text-shadow: 2px 2px black;
+			animation: slideInUp 1s ease-in-out;
+			letter-spacing: 1px;
+			color: #0693e3;
+		}
+		.slide > div p {
+			font-size: 1.5vw;
+			margin-top: 0;
+			margin-bottom: 1em;
+			animation: slideInDown 1s ease-in-out;
+			line-height: 1.5;
+			letter-spacing: 1px;
+		}
+		.slide > div a {
+			background-color: white;
+			color: #333;
+			padding: 0.5em 1.5em;
+			border-radius: 0.5em;
+			text-decoration: none;
+			font-weight: bold;
+			text-transform: uppercase;
+			transition: background-color 0.5s ease-in-out;
+			letter-spacing: 1px;
+		}
+		.slide > div a:hover {
+			background-color: #fff7b5;
+		}
 
+		@keyframes slideInUp {
+			from {
+				transform: translateY(100%);
+				opacity: 0;
+			}
+			to {
+				transform: translateY(0);
+				opacity: 1;
+			}
+		}
 
+		@keyframes slideInDown {
+			from {
+				transform: translateY(-100%);
+				opacity: 0;
+				}
+			to {
+				transform: translateY(0);
+				opacity: 1;
+			}
+		}
+	</style>
+  <div class="slide">
+		<div class="active">
+			<h1>Remote Patient Monitoring</h1>
+			<p>The Vitalism System can be used for remote monitoring of patients' vital signs, allowing doctors and caregivers to keep track of their patients' health status without the need for in-person visits. This can be particularly useful for patients with chronic conditions, elderly patients, or patients who live in remote areas.</p>
+		</div>
+		<div>
+			<h1>Elderly Care</h1>
+			<p>The Vitalism application can be used to provide care for elderly individuals. The application can continuously monitor their vital signs, allowing caregivers to respond quickly in case of any emergencies or changes in health status.</p>
+		</div>
+		<div>
+			<h1>Telehealth</h1>
+			<p>Patients can consult with their healthcare provider via the Vitalism application. The application allows the healthcare provider to view the patient's vital signs in real-time, allowing them to make informed decisions about the patient's health and provide guidance accordingly.</p>
+		</div>
+		<div>
+			<h1>Virtual Trials</h1>
+			<p>Researchers can use the Vitalism application to access data for use in research studies. This allows them to collect data in a non-invasive manner, while still gaining valuable insights into the health and wellness of participants.</p>
+		</div>
+		<div>
+			<h1>Medication Adherence</h1>
+			<p>Healthcare providers or caregivers can use the Vitalism application to monitor a patient's medication adherence. The application can send reminders to the patient or alert the provider if the patient is not taking their medication as prescribed.</p>
+		</div>
+		<div>
+			<h1>Patient Triage</h1>
+			<p>Patients can use the Vitalism application to track their vital signs and assess their health status. This allows patients to stay informed about their health and seek medical attention if necessary.</p>
+		</div>
+	</div>
 
-              <div class="tabs-with-content-ctas">
-                                                      
-                                                </div>
-            </div>
-          </div>
-                      
-        
-                  <div class="tabs-with-content-tab " data-bg-image="https://www.binah.ai/wp-content/uploads/2020/09/binah-thumbs-up.jpg">
-            <p class="tabs-with-content-tab-title">Telehealth</p>
-            <p class="tabs-with-content-tab-subtitle">patients can consult with their healthcare provider via the Vitalism 
-application. The application allows the healthcare provider to view the patient's vital signs in 
-real-time, allowing them to make informed decisions about the patient's health and provide 
-guidance accordingly.</p>
-            <div class="tabs-with-content-content-hidden">
-              
+	<script>
+		var slides = document.querySelectorAll('.slide > div');
+		var currentSlide = 0;
+		var slideInterval = setInterval(nextSlide, 5000);
 
-              <div class="tabs-with-content-ctas">
-                                                      
-                                                </div>
-            </div>
-          </div>
-                      
-        
-                  <div class="tabs-with-content-tab " data-bg-image="https://www.binah.ai/wp-content/uploads/2020/09/binah-old-walking-e1601369988462.jpg">
-            <p class="tabs-with-content-tab-title">Virtual Trials</p>
-            <p class="tabs-with-content-tab-subtitle">researchers can use the Vitalism application to access data for use in 
-research studies. This allows them to collect data in a non-invasive manner, while still 
-gaining valuable insights into the health and wellness of participants.</p>
-            <div class="tabs-with-content-content-hidden">
-              
+		function nextSlide() {
+			slides[currentSlide].classList.remove('active');
+			currentSlide = (currentSlide + 1) % slides.length;
+			slides[currentSlide].classList.add('active');
+		}
+	</script>
 
-
-
-              <div class="tabs-with-content-ctas">
-                                                      
-                                                </div>
-            </div>
-          </div>
-                      
-        
-                  <div class="tabs-with-content-tab " data-bg-image="https://www.binah.ai/wp-content/uploads/2020/09/binah-doc-skype-patient-e1601372291972.jpg">
-            <p class="tabs-with-content-tab-title">Medication Adherence</p>
-            <p class="tabs-with-content-tab-subtitle">healthcare providers or caregivers can use the Vitalism application to 
-monitor a patient's medication adherence. The application can send reminders to the 
-patient or alert the provider if the patient is not taking their medication as prescribed.</p>
-            <div class="tabs-with-content-content-hidden">
-              
-
-
-              <div class="tabs-with-content-ctas">
-                                                      
-                                                </div>
-            </div>
-          </div>
-                      
-        
-                  <div class="tabs-with-content-tab " data-bg-image>
-            <p class="tabs-with-content-tab-title">Patient Triage </p>
-            <p class="tabs-with-content-tab-subtitle">patients can use the Vitalism application to track their vital signs and 
-assess their health status. This allows patients to stay informed about their health and seek 
-medical attention if necessary </p>
-            <div class="tabs-with-content-content-hidden">
-              
-
-
-              <div class="tabs-with-content-ctas">
-                                                     
-                                                </div>
-            </div>
-          </div>
-                </div>
-                    <div class="tabs-with-content-content binah" style="background-image: url(images/shutterstock_1530651434.jpg)">
-        
-
-
-
-        <div class="tabs-with-content-ctas">
-                                    
-                              </div>
       </div>
-    </div>
-    <div class="tabs-with-content-main-mobile">
-                      <div class="tabs-with-content-tab-mobile">
-          <div class="tabs-with-content-content-mobile">
-            <h3 class="tabs-with-content-title-mobile">Elderly Care</h3>
-            <p class="tabs-with-content-subtitle-mobile">the Vitalism application can be used to provide care for elderly individuals. 
-The application can continuously monitor their vital signs, allowing caregivers to respond 
-quickly in case of any emergencies or changes in health status.</p>
-            <div class="tabs-with-content-text-mobile binah">
-              
-
-
-              <div class="tabs-with-content-ctas">
-                                                      
-                                                </div>
-            </div>
-          </div>
-          <div class="tabs-with-content-tab-close">
-            <p class="tabs-with-content-tab-close-title">Underwriting</p>
-          </div>
-        </div>
-                      <div class="tabs-with-content-tab-mobile">
-          <div class="tabs-with-content-content-mobile">
-            <h3 class="tabs-with-content-title-mobile">Dynamic Underwriting</h3>
-            <p class="tabs-with-content-subtitle-mobile">Personalize services and improve risk management with premiums that update in response to client’s real-time health status</p>
-            <div class="tabs-with-content-text-mobile binah">
-              <p>Add data to your yearly insurer check-in, creating competitive packages that meet your clients’ needs.</p>
-
-
-
-              <div class="tabs-with-content-ctas">
-                                                      
-                                                </div>
-            </div>
-          </div>
-          <div class="tabs-with-content-tab-close">
-            <p class="tabs-with-content-tab-close-title">Dynamic Underwriting</p>
-          </div>
-        </div>
-                      <div class="tabs-with-content-tab-mobile">
-          <div class="tabs-with-content-content-mobile">
-            <h3 class="tabs-with-content-title-mobile">Wellness Programs</h3>
-            <p class="tabs-with-content-subtitle-mobile">Increase wellness program engagement and empower your clients to take control of their health</p>
-            <div class="tabs-with-content-text-mobile binah">
-              <p><span style="color: rgba(0, 0, 0, 0.8); font-size: 20px; letter-spacing: -0.03em;">Add real-time health monitoring to your wellness programs to boost client-engagement and program success</span></p>
-
-
-
-              <div class="tabs-with-content-ctas">
-                                                     
-                                                </div>
-            </div>
-          </div>
-          <div class="tabs-with-content-tab-close">
-            <p class="tabs-with-content-tab-close-title">Wellness Programs</p>
-          </div>
-        </div>
-                      <div class="tabs-with-content-tab-mobile">
-          <div class="tabs-with-content-content-mobile">
-            <h3 class="tabs-with-content-title-mobile">Risk Management </h3>
-            <p class="tabs-with-content-subtitle-mobile">Improve risk assessment for life insurance policies using real-time health data and Binah.ai’s Health Score</p>
-            <div class="tabs-with-content-text-mobile binah">
-              <p>Accelerate onboarding and enhance straight-through processing with real-time health data</p>
-
-
-
-              <div class="tabs-with-content-ctas">
-                                                      
-                                                </div>
-            </div>
-          </div>
-          <div class="tabs-with-content-tab-close">
-            <p class="tabs-with-content-tab-close-title">Risk Management </p>
-          </div>
-        </div>
-                      <div class="tabs-with-content-tab-mobile">
-          <div class="tabs-with-content-content-mobile">
-            <h3 class="tabs-with-content-title-mobile">Claims Processing </h3>
-            <p class="tabs-with-content-subtitle-mobile">Improve your customer experience with faster, friction-free claims processing </p>
-            <div class="tabs-with-content-text-mobile binah">
-              <p>Meet your clients needs for user-friendly claims processing using real-time health data</p>
-
-
-
-              <div class="tabs-with-content-ctas">
-                                                      
-                                                </div>
-            </div>
-          </div>
-          <div class="tabs-with-content-tab-close">
-            <p class="tabs-with-content-tab-close-title">Claims Processing </p>
-          </div>
-        </div>
-          </div>
-  </div>
-</section>
-
+      </section>
+  
 
 <div class="icon-cards row-icon-cards--cols-3 block icon-cards    icon-cards--hide-background  solid small-padding default" data-block_75335e7926b1cfbbe15ea435db87cca2>
   <img decoding="async" class="wave-border" src="fonts/wave-bg-blue.svg" alt="wave-border">
@@ -712,26 +648,29 @@ quickly in case of any emergencies or changes in health status.</p>
         
 
   <div class="footer-links">
-          <ul id="menu-footer-links" class="menu menu-footer-links"><li id="menu-item-5943" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5943"><a href="C:\Users\AL-FAJR\Downloads\Compressed\company.html">Home Page</a>
+          <ul id="menu-footer-links" class="menu menu-footer-links"><li id="menu-item-5943" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5943"><a href="../index.html">Home Page</a>
 
 </li>
 
-<li id="menu-item-5947" class="mobile-margin-top menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5947"><a href="C:\Users\AL-FAJR\Downloads\Compressed\Problem and statics\index.html">Problem and statics</a>
+<li id="menu-item-5947" class="mobile-margin-top menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5947"><a href="../Problem and statics/index.html">Problem and statics</a>
 <ul class="sub-menu">
 
-<li id="menu-item-12197" class="bold mobile-margin-top menu-item menu-item-type-post_type menu-item-object-page menu-item-12197"><a href="C:\Users\AL-FAJR\Downloads\Compressed\Technology\index.html">Technology</a></li>
+<li id="menu-item-12197" class="bold mobile-margin-top menu-item menu-item-type-post_type menu-item-object-page menu-item-12197"><a href="../Technology/index.html">Technology</a></li>
 </ul>
 </li>
-<li id="menu-item-5951" class="mobile-margin-top menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-5951"><a href="C:\Users\AL-FAJR\Downloads\Compressed\Solution\index.html">Solutions</a>
+<li id="menu-item-5951" class="mobile-margin-top menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-5951"><a href="../Solution/index.html">Solutions</a>
 
 </li>
-<li id="menu-item-5958" class="bold mobile-margin-top menu-item menu-item-type-custom menu-item-object-custom menu-item-5958"><a href="industry-insurance.html">Features and Benefits</a></li>
-<li id="menu-item-5962" class="bold menu-item menu-item-type-custom menu-item-object-custom menu-item-5962"><a href="C:\Users\AL-FAJR\Downloads\Compressed\Futurework\futurework.html">Future work and conclusion</a></li>
+<li id="menu-item-5958" class="bold mobile-margin-top menu-item menu-item-type-custom menu-item-object-custom menu-item-5958"><a href="../html/industry-insurance.html">Features and Benefits</a></li>
+<li id="menu-item-5962" class="bold menu-item menu-item-type-custom menu-item-object-custom menu-item-5962"><a href="../Futurework/futurework.html">Future work and conclusion</a></li>
+<li id="menu-item-5962" class="bold menu-item menu-item-type-custom menu-item-object-custom menu-item-5962"><a href="../Experimntal results/index.html">Experiments and Results</a></li>
 </ul>
         </div>
 
   <div class="footer-right">
     <div class="mf-newsletter-wrapper">
+      <h2 class="mce-title"><a href="https://www.amazon.com/gp/product/B0C3WR4CNW" target="_blank">Download Vitalism
+        App</a> </h2>
                 <h2 class="mce-title">Subscribe to our social media Pages</h2>
                 <div class="mf-newsletter">
           <div class="footer-hubspot-form"></div>
@@ -744,7 +683,7 @@ quickly in case of any emergencies or changes in health status.</p>
 
     <div class="mobile show-mobile">
       <div class="nav-mobile">
-                  <ul id="menu-footer-links-1" class="menu menu-footer-links"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5943"><a href="C:\Users\AL-FAJR\Downloads\Compressed\company.html">Home Page</a>
+                  <ul id="menu-footer-links-1" class="menu menu-footer-links"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5943"><a href="../index.html">Home Page</a>
 <ul class="sub-menu">
 <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5944"><a href="#intro">Introduction</a></li>
 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13119"><a href="#why">Why Vitalism</a></li>
@@ -752,12 +691,12 @@ quickly in case of any emergencies or changes in health status.</p>
 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15587"><a href="#ui">UI\UX</a></li>
 </ul>
 </li>
-<li class="bold mobile-margin-top menu-item menu-item-type-custom menu-item-object-custom menu-item-8094"><a href="C:\Users\AL-FAJR\Downloads\Compressed\Problem and statics\index.html">Problem and Statics</a></li>
-<li class="bold mobile-margin-top menu-item menu-item-type-post_type menu-item-object-page menu-item-16327"><a href="C:\Users\AL-FAJR\Downloads\Compressed\Technology\index.html">Technology</a></li>
-<li class="mobile-margin-top menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5947"><a href="C:\Users\AL-FAJR\Downloads\Compressed\Solution\index.html">Solutions</a>
+<li class="bold mobile-margin-top menu-item menu-item-type-custom menu-item-object-custom menu-item-8094"><a href="../Problem and statics/index.html">Problem and Statics</a></li>
+<li class="bold mobile-margin-top menu-item menu-item-type-post_type menu-item-object-page menu-item-16327"><a href="../Technology/index.html">Technology</a></li>
+<li class="mobile-margin-top menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5947"><a href="../Solution/index.html">Solutions</a>
 
 </li>
-<li class="mobile-margin-top menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-5951"><a href="C:\Users\AL-FAJR\Downloads\Compressed\Futurework\futurework.html">Futurework and Conclusion</a>
+<li class="mobile-margin-top menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-5951"><a href="../Futurework/futurework.html">Futurework and Conclusion</a>
 
 </li>
 
@@ -786,7 +725,7 @@ quickly in case of any emergencies or changes in health status.</p>
 
 <div class="footer-bottom grid-container">
   <div class="footer-copyright">
-    <p>© Vitalism.ai All rights reserved 2023</p>
+    <p>© Vitalism All rights reserved 2023</p>
 <div class="footer-copyright-links">
 
 </div>
@@ -794,95 +733,78 @@ quickly in case of any emergencies or changes in health status.</p>
   </div>
 </div>
 
-  <div class="c-huspot-popups-customize" style="line-height: 0; height: 0; visibility: hidden;">
-  
-      <div class="c-huspot-popups-customize__item" style="background-color: #fff" data-hspopup-id="leadinModal-2243225" data-hspopup-style="one">
-      <style>
+<div class="c-huspot-popups-customize" style="line-height: 0; height: 0; visibility: hidden;">
+
+    <div class="c-huspot-popups-customize__item" style="background-color: #fff" data-hspopup-id="leadinModal-2243225" data-hspopup-style="one">
+    <style>
+      #leadinModal-2243225 .leadin-content-body {
+          background-image: url('images/bp_popup_small-1.png');
+        }
+      @media  only screen and (max-width: 768px){
         #leadinModal-2243225 .leadin-content-body {
-            background-image: url('images/bp_popup_small-1.png');
-          }
-        @media  only screen and (max-width: 768px){
-          #leadinModal-2243225 .leadin-content-body {
-            background-image: url('images/mobbp_popup_small-1.png');
-          }
+          background-image: url('images/mobbp_popup_small-1.png');
         }
+      }
 
-        
+      
 
-        #leadinModal-2243225.leadinModal--style-wbn p,
-        #leadinModal-2243225.leadinModal--style-wbn h4,
-        #leadinModal-2243225.leadinModal--style-wbn h1,
-        #leadinModal-2243225.leadinModal--style-wbn h2,
-        #leadinModal-2243225.leadinModal--style-wbn h3 { color:  !important; }
-      </style>
-    </div>
-      <div class="c-huspot-popups-customize__item" style="background-color: #fff" data-hspopup-id="leadinModal-2243333" data-hspopup-style="two">
-      <style>
+      #leadinModal-2243225.leadinModal--style-wbn p,
+      #leadinModal-2243225.leadinModal--style-wbn h4,
+      #leadinModal-2243225.leadinModal--style-wbn h1,
+      #leadinModal-2243225.leadinModal--style-wbn h2,
+      #leadinModal-2243225.leadinModal--style-wbn h3 { color:  !important; }
+    </style>
+  </div>
+    <div class="c-huspot-popups-customize__item" style="background-color: #fff" data-hspopup-id="leadinModal-2243333" data-hspopup-style="two">
+    <style>
+      #leadinModal-2243333 .leadin-content-body {
+          background-image: url('');
+        }
+      @media  only screen and (max-width: 768px){
         #leadinModal-2243333 .leadin-content-body {
-            background-image: url('');
-          }
-        @media  only screen and (max-width: 768px){
-          #leadinModal-2243333 .leadin-content-body {
-            background-image: url('');
-          }
+          background-image: url('');
         }
+      }
 
-        
+      
 
-        #leadinModal-2243333.leadinModal--style-wbn p,
-        #leadinModal-2243333.leadinModal--style-wbn h4,
-        #leadinModal-2243333.leadinModal--style-wbn h1,
-        #leadinModal-2243333.leadinModal--style-wbn h2,
-        #leadinModal-2243333.leadinModal--style-wbn h3 { color:  !important; }
-      </style>
-    </div>
-      <div class="c-huspot-popups-customize__item" style="background-color: #fff" data-hspopup-id="leadinModal-4220392" data-hspopup-style="wbn">
-      <style>
+      #leadinModal-2243333.leadinModal--style-wbn p,
+      #leadinModal-2243333.leadinModal--style-wbn h4,
+      #leadinModal-2243333.leadinModal--style-wbn h1,
+      #leadinModal-2243333.leadinModal--style-wbn h2,
+      #leadinModal-2243333.leadinModal--style-wbn h3 { color:  !important; }
+    </style>
+  </div>
+    <div class="c-huspot-popups-customize__item" style="background-color: #fff" data-hspopup-id="leadinModal-4220392" data-hspopup-style="wbn">
+    <style>
+      #leadinModal-4220392 .leadin-content-body {
+          background-image: url('images/Popup-2.jpg');
+        }
+      @media  only screen and (max-width: 768px){
         #leadinModal-4220392 .leadin-content-body {
-            background-image: url('images/Popup-2.jpg');
-          }
-        @media  only screen and (max-width: 768px){
-          #leadinModal-4220392 .leadin-content-body {
-            background-image: url('');
-          }
+          background-image: url('');
         }
+      }
 
-        
+      
 
-        #leadinModal-4220392.leadinModal--style-wbn p,
-        #leadinModal-4220392.leadinModal--style-wbn h4,
-        #leadinModal-4220392.leadinModal--style-wbn h1,
-        #leadinModal-4220392.leadinModal--style-wbn h2,
-        #leadinModal-4220392.leadinModal--style-wbn h3 { color: #000000 !important; }
-      </style>
-    </div>
+      #leadinModal-4220392.leadinModal--style-wbn p,
+      #leadinModal-4220392.leadinModal--style-wbn h4,
+      #leadinModal-4220392.leadinModal--style-wbn h1,
+      #leadinModal-4220392.leadinModal--style-wbn h2,
+      #leadinModal-4220392.leadinModal--style-wbn h3 { color: #000000 !important; }
+    </style>
   </div>
 </div>
-<script type="rocketlazyloadscript">
-  var disclaimer = "*By submitting this form you agree to receive communications from Binah.ai. You may unsubscribe at any time from the link at the bottom of our emails.";
+</div>
 
-  hbspt.forms.create({
-    portalId: "8790047",
-    formId: "6a47c0fe-582b-4e99-97c0-922aa9cf249a",
-    target: '.footer-hubspot-form',
-    translations: {
-      en: {
-        submitText: 'Send',
-      }
-    },
-    groupErrors: false,
-    onFormReady: function($form) {
-      $form.find('.hs-submit .actions').append('<div class="mce-disclaimer">' + disclaimer + '</div>');
-    } 
-});
-</script>
-    <script type="text/javascript" src="js/index_1.js" id="swv-js"></script>
+  <script type="text/javascript" src="js/index.js" id="swv-js"></script>
 <script type="text/javascript" id="contact-form-7-js-extra">
 /* <![CDATA[ */
-var wpcf7 = {"api":{"root":"https:\/\/www.binah.ai\/wp-json\/","namespace":"contact-form-7\/v1"},"cached":"1"};
+var wpcf7 = {"api":{"root":"https:\/\/www.Vitalism\/wp-json\/","namespace":"contact-form-7\/v1"},"cached":"1"};
 /* ]]> */
 </script>
-<script type="text/javascript" src="js/index.js" id="contact-form-7-js"></script>
+<script type="text/javascript" src="js/index_1.js" id="contact-form-7-js"></script>
 <script type="text/javascript" src="js/jquery.fancybox.min.js" id="jquery-fancybox-js"></script>
 <script type="text/javascript" id="jquery-fancybox-js-after">
 var fb_timeout, fb_opts={'overlayShow':true,'hideOnOverlayClick':true,'showCloseButton':true,'margin':20,'enableEscapeButton':true,'autoScale':true };
@@ -905,7 +827,7 @@ jQuery(easy_fancybox_auto);
 <script type="text/javascript" src="js/jquery.mousewheel.min.js" id="jquery-mousewheel-js"></script>
 <script type="text/javascript" id="sage/main.js-js-extra">
 /* <![CDATA[ */
-var binah = {"ajaxurl":"https:\/\/www.binah.ai\/wp-admin\/admin-ajax.php","posts":"{\"page\":0,\"pagename\":\"industry-insurance\",\"error\":\"\",\"m\":\"\",\"p\":0,\"post_parent\":\"\",\"subpost\":\"\",\"subpost_id\":\"\",\"attachment\":\"\",\"attachment_id\":0,\"name\":\"industry-insurance\",\"page_id\":0,\"second\":\"\",\"minute\":\"\",\"hour\":\"\",\"day\":0,\"monthnum\":0,\"year\":0,\"w\":0,\"category_name\":\"\",\"tag\":\"\",\"cat\":\"\",\"tag_id\":\"\",\"author\":\"\",\"author_name\":\"\",\"feed\":\"\",\"tb\":\"\",\"paged\":0,\"meta_key\":\"\",\"meta_value\":\"\",\"preview\":\"\",\"s\":\"\",\"sentence\":\"\",\"title\":\"\",\"fields\":\"\",\"menu_order\":\"\",\"embed\":\"\",\"category__in\":[],\"category__not_in\":[],\"category__and\":[],\"post__in\":[],\"post__not_in\":[],\"post_name__in\":[],\"tag__in\":[],\"tag__not_in\":[],\"tag__and\":[],\"tag_slug__in\":[],\"tag_slug__and\":[],\"post_parent__in\":[],\"post_parent__not_in\":[],\"author__in\":[],\"author__not_in\":[],\"ignore_sticky_posts\":false,\"suppress_filters\":false,\"cache_results\":true,\"update_post_term_cache\":true,\"update_menu_item_cache\":false,\"lazy_load_term_meta\":true,\"update_post_meta_cache\":true,\"post_type\":\"\",\"posts_per_page\":6,\"nopaging\":false,\"comments_per_page\":\"50\",\"no_found_rows\":false,\"order\":\"DESC\"}","current_page":"1","max_page":"0","translate":{"more_info":"More info","close":"Close"}};
+var Vitalism = {"ajaxurl":"https:\/\/www.Vitalism\/wp-admin\/admin-ajax.php","posts":"{\"page\":0,\"pagename\":\"technology\",\"error\":\"\",\"m\":\"\",\"p\":0,\"post_parent\":\"\",\"subpost\":\"\",\"subpost_id\":\"\",\"attachment\":\"\",\"attachment_id\":0,\"name\":\"technology\",\"page_id\":0,\"second\":\"\",\"minute\":\"\",\"hour\":\"\",\"day\":0,\"monthnum\":0,\"year\":0,\"w\":0,\"category_name\":\"\",\"tag\":\"\",\"cat\":\"\",\"tag_id\":\"\",\"author\":\"\",\"author_name\":\"\",\"feed\":\"\",\"tb\":\"\",\"paged\":0,\"meta_key\":\"\",\"meta_value\":\"\",\"preview\":\"\",\"s\":\"\",\"sentence\":\"\",\"title\":\"\",\"fields\":\"\",\"menu_order\":\"\",\"embed\":\"\",\"category__in\":[],\"category__not_in\":[],\"category__and\":[],\"post__in\":[],\"post__not_in\":[],\"post_name__in\":[],\"tag__in\":[],\"tag__not_in\":[],\"tag__and\":[],\"tag_slug__in\":[],\"tag_slug__and\":[],\"post_parent__in\":[],\"post_parent__not_in\":[],\"author__in\":[],\"author__not_in\":[],\"ignore_sticky_posts\":false,\"suppress_filters\":false,\"cache_results\":true,\"update_post_term_cache\":true,\"update_menu_item_cache\":false,\"lazy_load_term_meta\":true,\"update_post_meta_cache\":true,\"post_type\":\"\",\"posts_per_page\":6,\"nopaging\":false,\"comments_per_page\":\"50\",\"no_found_rows\":false,\"order\":\"DESC\"}","current_page":"1","max_page":"0","translate":{"more_info":"More info","close":"Close"}};
 /* ]]> */
 </script>
 <script type="text/javascript" src="js/main.js" id="sage/main.js-js"></script>
@@ -916,7 +838,7 @@ var megamenu = {"timeout":"300","interval":"100"};
 /* ]]> */
 </script>
 <script type="text/javascript" src="js/maxmegamenu.js" id="megamenu-js"></script>
-  
+
 
 
 <!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me --></body></html>
