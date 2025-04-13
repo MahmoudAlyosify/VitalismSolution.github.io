@@ -1,3 +1,104 @@
+/* === Team Leader & Team Layout === */
+
+.team-section {
+	background: #f2f2f2;
+	padding: 40px 20px;
+	text-align: center;
+  }
+  
+  .team-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 30px;
+  }
+  
+  .team-member {
+	background: white;
+	border-radius: 12px;
+	padding: 20px;
+	width: 240px;
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+	transition: transform 0.3s ease;
+	position: relative;
+  }
+  
+  .team-member:hover {
+	transform: translateY(-5px);
+  }
+  
+  .team-member img {
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	object-fit: cover;
+	margin-bottom: 15px;
+	border: 3px solid transparent;
+  }
+  
+  .team-member h3 {
+	margin: 0;
+	color: #007bff;
+	font-size: 18px;
+  }
+  
+  .team-member .role {
+	font-weight: bold;
+	color: #333;
+	margin: 5px 0;
+  }
+  
+  .team-member ul {
+	list-style: none;
+	padding: 0;
+	font-size: 14px;
+	margin: 10px 0;
+	color: #555;
+  }
+  
+  .team-member ul li {
+	margin-bottom: 4px;
+  }
+  
+  .team-member .bio {
+	font-size: 13px;
+	color: #666;
+	margin-top: 10px;
+  }
+  
+  /* Highlight Leader */
+  .team-member.leader {
+	border: 2px solid #007bff;
+	box-shadow: 0 0 12px rgba(0, 123, 255, 0.3);
+  }
+  
+.leader {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 40px;
+  }
+  /* === Highlight Team Leader === */
+.leader-highlight {
+	border: 3px solid #007bff;
+	box-shadow: 0 0 20px rgba(0, 123, 255, 0.4);
+	transform: scale(1.03);
+	transition: all 0.3s ease-in-out;
+  }
+  
+  .leader-item {
+	max-width: 300px;
+	border: 2px solid #007bff;
+	box-shadow: 0 0 15px rgba(0, 123, 255, 0.3);
+  }
+  
+  .team {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 20px;
+  }
+  
+
 .wpcf7 .screen-reader-response {
 	position: absolute;
 	overflow: hidden;
